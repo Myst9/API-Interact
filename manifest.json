@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "API-Interact",
+  "description": "An extension to make pytorch API documentation interactive",
+  "minimum_chrome_version": "49",
+  "author": "RISHALAB",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "API-Interact"
+  },
+  "version": "1.0.0",
+  "icons":{
+    "128": "torch_logo.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["index.html",
+        "lib/codemirror.js",
+        "lib/codemirror.css",
+        "lib/mode/python/python.js"
+      ],
+      "matches": ["https://*/*"]
+    }
+  ],
+  "permissions": ["tabs", "tabGroups", "storage", "webRequest", "webNavigation"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["js/jquery-3.3.1.min.js", "app.js", "js/chart_imported.js", "lib/codemirror.js",
+        "lib/mode/python/python.js"]
+    }
+  ]
+}
